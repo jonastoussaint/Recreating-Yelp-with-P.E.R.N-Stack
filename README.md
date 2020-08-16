@@ -26,3 +26,8 @@ Used this to set a new port varible
 
 Use this so you dont have to keep starting up the server
 with node server.js
+
+
+Go into package.json and change script:
+
+"start": "nodemon server.js"
