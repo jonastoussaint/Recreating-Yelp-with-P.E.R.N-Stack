@@ -10,7 +10,7 @@
 
 ### `npm init -y`
 
-### `install express`
+### `npm install express`
 
 ### `node server.js` 
 
