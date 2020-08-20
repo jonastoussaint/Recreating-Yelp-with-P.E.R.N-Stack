@@ -60,4 +60,8 @@ Use this to install Postgres and connect to database
 ### `Booststrap`
 https://cdnjs.com/libraries/font-awesome
 
+### `npm install axios`
+
+use this to fetch from back server.
+
 
