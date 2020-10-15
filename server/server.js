@@ -2,10 +2,12 @@ require("dotenv").config();
 const db = require("./db");
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const app = express();
 
 
 app.use(express.json());
+app.use(cors());
 
 /*
 Third party middleware using json
@@ -50,7 +52,7 @@ app.get("/api/v1/restaurants", async (req, res) => {
 
     try {
         const results = await db.query("SELECT * FROM restaurants")
-        console.log(results); 
+        //console.log(results); 
         res.status(200).json({
         results: results.rows.length,
         status: "success",
@@ -67,7 +69,7 @@ app.get("/api/v1/restaurants", async (req, res) => {
 //Get an individual restaurant        This callback function is call a rout handler
 // :id -> is a variable parameter
 app.get("/api/v1/restaurants/:id", async (req, res) => {
-    console.log(req.params.id);
+    //console.log(req.params.id);
     try {
         //Ayways use this format because it protects from sql injection attacks
         //You can also pass in as many parameters as you want.
@@ -85,12 +87,12 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
 
 //Create a Restaurants
 app.post("/api/v1/restaurants", async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     try{
         const results = await db.query("INSERT INTO restaurants (name, location, price_range) VALUES ($1, $2, $3) RETURNING *",  
         [req.body.name, req.body.location, req.body.price_range]);
-        console.log(results);
+        //console.log(results);
         res.status(201).json({
         status: "success",
         data: {
@@ -108,7 +110,7 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
     try{
         const results = await db.query("UPDATE restaurants SET name = $1, location = $2, price_range = $3 WHERE id = $4 RETURNING *", 
         [req.body.name, req.body.location, req.body.price_range, req.params.id]);
-        console.log(req.params.id);
+        //console.log(req.params.id);
         console.log(req.body);
         res.status(201).json({
         status: "success",
